@@ -1,1 +1,2 @@
-from .elements import Element
+from .elements import *
+from .styles import *
