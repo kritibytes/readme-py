@@ -39,4 +39,11 @@ class ULi(Li):
 
 class OLi(Li):
     def to_markdown(self) -> str:
-        return "\n".join([f"{i}.\t{self.elements[i].to_markdown()}" for i in range(len(self.elements))])
+        return "\n".join([f"{i+1}.\t{self.elements[i].to_markdown()}" for i in range(len(self.elements))])
+
+@dataclass
+class P(Element):
+    text: str = ""
+    
+    def to_markdown(self) -> str:
+        return self.text
