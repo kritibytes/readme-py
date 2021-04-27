@@ -1,5 +1,7 @@
 from dataclasses import dataclass
+from typing import List
 from ..elements import Element
+from readme_py import elements
 
 
 @dataclass
@@ -7,5 +9,34 @@ class Link(Element):
     text: str
     href: str
 
-    def to_markdown(self):
+    def to_markdown(self) -> str:
         return f"[{self.text}]({self.href})"
+
+@dataclass
+class Image(Element):
+    alt: str
+    src: str
+    
+    def to_markdown(self) -> str:
+        return f"![{self.alt}]({self.src})"
+
+class Li(Element):
+    elements: List[Element] = []
+
+    def __init__(self,elements: List[Element] = []) -> None:
+        self.elements = elements
+
+    def add(self,element: Element) -> None:
+        self.elements.append(element)
+
+    def to_markdown(self) -> str:
+        return ""
+        
+
+class ULi(Li):
+    def to_markdown(self) -> str:
+        return "\n".join([f"-\t{el.to_markdown()}" for el in self.elements])
+
+class OLi(Li):
+    def to_markdown(self) -> str:
+        return "\n".join([f"{i}.\t{self.elements[i].to_markdown()}" for i in range(len(self.elements))])
