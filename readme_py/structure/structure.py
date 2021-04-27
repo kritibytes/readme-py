@@ -1,8 +1,6 @@
 from ..elements import Element
 from typing import List, Any
-from ..addons import Link
-from ..markdown import header, br
-from dataclasses import dataclass, field
+from ..addons import Link,Header,Br
 
 
 class Section:
@@ -12,10 +10,10 @@ class Section:
 
     def to_markdown(self):
         markdown_text: str = ""
-        markdown_text += header(self.header_size, self.title) + br*2
+        markdown_text += Header(self.header_size, self.title).to_markdown() + Br().to_markdown()*2
 
         for el in self.inner:
-            markdown_text += el.to_markdown() + br*2
+            markdown_text += el.to_markdown() + Br().to_markdown()*2
 
         return markdown_text
 
@@ -34,7 +32,7 @@ class Readme:
 
     def to_markdown(self):
         markdown_text: str = ""
-        markdown_text += header(1, self.title) + br*2
+        markdown_text += Header(1, self.title).to_markdown() + Br().to_markdown()*2
 
         for section in self.sections:
             markdown_text += section.to_markdown()

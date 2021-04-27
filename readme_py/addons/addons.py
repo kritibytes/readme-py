@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from ..markdown import header
 from typing import List
 from ..elements import Element
 
@@ -54,4 +53,8 @@ class Header(Element):
     text:str
     
     def to_markdown(self) -> str:
-        return header(self.size,self.text)
+        return f"{'#'*self.size} {self.text}"
+    
+class Br(Element):
+    def to_markdown(self) -> str:
+        return "\n"
