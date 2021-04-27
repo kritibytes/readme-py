@@ -1,6 +1,7 @@
 from typing import List, Any
 from ..addons import Link
 from ..markdown import header, br
+from readme_py import markdown
 
 
 class Section:
@@ -23,6 +24,14 @@ class Readme:
     badges: List
     sections: List[Section]
 
+    def to_markdown(self):
+        markdown_text:str = ""
+        markdown_text+=header(1,self.title) + br*2
+        
+        for section in self.sections:
+            markdown_text+= section.to_markdown()
+            
+        return markdown_text
 
 class LicenseSection(Section):
     def __init__(self, license_type: str, license_link: str) -> None:
