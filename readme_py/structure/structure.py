@@ -1,7 +1,5 @@
-from ..elements import Element
+from ..elements import Element,Link,Header,Br
 from typing import List, Any
-from ..elements import Link,Header,Br
-
 
 class Section:
     title: str = ""
