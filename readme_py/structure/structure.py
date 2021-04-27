@@ -1,12 +1,13 @@
+from ..elements import Element
 from typing import List, Any
 from ..addons import Link
 from ..markdown import header, br
-from readme_py import markdown
+from dataclasses import dataclass, field
 
 
 class Section:
-    title: str
-    inner: List[Any]
+    title: str = ""
+    inner: List[Element] = []
     header_size: int = 2
 
     def to_markdown(self):
@@ -18,20 +19,28 @@ class Section:
 
         return markdown_text
 
+
 class Readme:
-    title: str
-    description: str
-    badges: List
-    sections: List[Section]
+    title: str = ""
+    description: str = ""
+    badges: List[Any] = []
+    sections: List[Section] = []
+
+    def __init__(self, title: str = "", description: str = "", sections: List[Section] = [], badges: List[Any] = []) -> None:
+        self.title = title
+        self.description = description
+        self.badges = badges
+        self.sections = sections
 
     def to_markdown(self):
-        markdown_text:str = ""
-        markdown_text+=header(1,self.title) + br*2
-        
+        markdown_text: str = ""
+        markdown_text += header(1, self.title) + br*2
+
         for section in self.sections:
-            markdown_text+= section.to_markdown()
-            
+            markdown_text += section.to_markdown()
+
         return markdown_text
+
 
 class LicenseSection(Section):
     def __init__(self, license_type: str, license_link: str) -> None:

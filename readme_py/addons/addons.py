@@ -1,7 +1,9 @@
 from dataclasses import dataclass
+from ..elements import Element
+
 
 @dataclass
-class Link:
+class Link(Element):
     text: str
     href: str
 
