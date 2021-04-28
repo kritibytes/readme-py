@@ -1,5 +1,6 @@
-from ..structure import Readme
-
+from ..structure import Readme,Section
+from ..elements import Element
+from typing import Union
 
 def generate(readme_obj: Readme, type: str='md', file_name:str="README.md"):
     inner_data:str = ""
@@ -9,3 +10,6 @@ def generate(readme_obj: Readme, type: str='md', file_name:str="README.md"):
     
     with open(file_name,"w") as f:
         f.write(inner_data)
+
+def md(element:Union[Element,Section]):
+    return element.to_markdown()

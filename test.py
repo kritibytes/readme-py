@@ -4,7 +4,7 @@ import os
 os.chdir('./test')
 
 AboutMeText = P(f"""\
-Hello. I am {bold('Yunis Huseynzade')} from {italic(bold('Azerbaijan'))}.{br}
+Hello. I am {bold('Yunis Huseynzade')} from {italic(bold('Azerbaijan'))}.{md(Br())}
 I am {code('Python Developer')}.""")
 
 class AboutMe(Section):

@@ -1,8 +1,10 @@
 from dataclasses import dataclass
-from typing import List
+from typing import List,Type
 from abc import abstractmethod, ABCMeta
+from ..generator import md
 
-class Element(metaclass=ABCMeta):    
+class Element(metaclass=ABCMeta):
+        
     @abstractmethod
     def to_markdown(self) -> str:
         pass
@@ -38,11 +40,11 @@ class Li(Element):
 
 class ULi(Li):
     def to_markdown(self) -> str:
-        return "\n".join([f"-\t{el.to_markdown()}" for el in self.elements])
+        return "\n".join([f"-\t{md(el)}" for el in self.elements])
 
 class OLi(Li):
     def to_markdown(self) -> str:
-        return "\n".join([f"{i+1}.\t{self.elements[i].to_markdown()}" for i in range(len(self.elements))])
+        return "\n".join([f"{i+1}.\t{md(self.elements[i])}" for i in range(len(self.elements))])
 
 @dataclass
 class P(Element):
