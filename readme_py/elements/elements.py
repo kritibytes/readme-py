@@ -123,17 +123,30 @@ class TaskList(Element):
     def to_markdown(self) -> str:
         return "\n".join([f"- [{'x' if task.checked else ' '}] {task.text}" for task in self.tasks])
 
+
 @dataclass
 class BlockQuote(Element):
-    text:str
-    
+    text: str
+
     def to_markdown(self) -> str:
         return f"> {self.text}"
-    
+
+
 @dataclass
 class Strikethrough(Element):
-    text:str
-    
+    text: str
+
     def to_markdown(self) -> str:
         return f"~~{self.text}~~"
-    
+
+
+class DefinitionList(Element):
+    text: str
+    items: List[str]
+
+    def __init__(self, text: str, items: List[str]) -> None:
+        self.text = text
+        self.items = items
+
+    def to_markdown(self) -> str:
+        return "\n".join([self.text, *[f":\t{item}" for item in self.items]])
