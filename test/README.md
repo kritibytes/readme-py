@@ -24,8 +24,16 @@ I have some open-source libraries:
 | School no. 309 | 2010-2021 |
 | Pragmatech | 2020 |
 
-- [x] a
-- [ ] a
+```py
+@dataclass
+class CodeBlock(Element):
+    lang: str
+    code: str
+```
+
+- [x] Buy bread
+- [ ] Buy milk
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)

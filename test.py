@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from readme_py.elements.elements import CodeBlock, TaskList
 from readme_py import *
 import os
 os.chdir('./test')
@@ -32,7 +33,17 @@ class AboutMe(Section):
                 "school":"Pragmatech",
                 "year":"2020"
             }
-        ],['school','year'],False)
+        ],['school','year'],False),
+        CodeBlock("py","""\n
+@dataclass
+class CodeBlock(Element):
+    lang: str
+    code: str
+"""),
+        TaskList([
+            TaskList.Task("Buy bread",True),
+            TaskList.Task("Buy milk")
+        ])
     ]
 
 license_section = LicenseSection("MIT","https://choosealicense.com/licenses/mit/")
