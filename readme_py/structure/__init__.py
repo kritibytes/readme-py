@@ -1,1 +1,5 @@
-from .structure import *
+from .structure import (
+    Readme,
+    Section,
+    LicenseSection
+)

@@ -1,6 +1,5 @@
 from ..elements import Element,Link,Header,Br
 from typing import List, Any
-from ..generator import md
 
 class Section:
     title: str = ""
@@ -8,6 +7,7 @@ class Section:
     header_size: int = 2
 
     def to_markdown(self):
+        from ..generator import md
         markdown_text: str = ""
         markdown_text += md(Header(self.header_size, self.title)) + md(Br())*2
 
@@ -30,6 +30,7 @@ class Readme:
         self.sections = sections
 
     def to_markdown(self):
+        from ..generator import md
         markdown_text: str = ""
         markdown_text += md(Header(1, self.title)) + md(Br())*2
 
