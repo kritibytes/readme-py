@@ -97,3 +97,13 @@ class Table(Element):
         for d in self.data:
             markdown_text += "| "+" | ".join([d.get(key, "") for key in self.keys]) + " |\n"
         return markdown_text.strip("\n")
+
+@dataclass
+class CodeBlock(Element):
+    lang: str
+    code: str
+
+    def to_markdown(self) -> str:
+        from ..generator import md
+        return f"""```{self.lang}\n{self.code.strip()}\n```"""
+        
