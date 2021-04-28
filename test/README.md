@@ -24,7 +24,7 @@ I have some open-source libraries:
 | School no. 309 | 2010-2021 |
 | Pragmatech | 2020 |
 
-### My Code ## {#hello}
+### My Code
 
 ```py
 @dataclass
@@ -36,8 +36,13 @@ class CodeBlock(Element):
 - [x] Buy bread
 - [ ] Buy milk
 
+Samir Kerimov [^1619620698.6057918]
+ [^1619620698.6057918]: link1
+
+Schhol [^1619620698.605844]
+ [^1619620698.605844]: link2
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
-hello
