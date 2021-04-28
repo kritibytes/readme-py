@@ -22,7 +22,17 @@ class AboutMe(Section):
         OLi([
             P('School no. 309'),
             P('Pragmatech Education and Development Center')
-        ])
+        ]),
+        Table([
+            {
+                "school":"School no. 309",
+                "year":"2010-2021"
+            },
+            {
+                "school":"Pragmatech",
+                "year":"2020"
+            }
+        ],['school','year'],False)
     ]
 
 license_section = LicenseSection("MIT","https://choosealicense.com/licenses/mit/")

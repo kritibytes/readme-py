@@ -6,7 +6,8 @@ from .elements import (
     OLi,
     P,
     Header,
-    Br
+    Br,
+    Table
 )
 from .styles import (
     bold,

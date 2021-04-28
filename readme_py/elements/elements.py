@@ -2,11 +2,13 @@ from dataclasses import dataclass
 from typing import List
 from abc import abstractmethod, ABCMeta
 
+
 class Element(metaclass=ABCMeta):
-        
+
     @abstractmethod
     def to_markdown(self) -> str:
         pass
+
 
 @dataclass
 class Link(Element):
@@ -16,52 +18,82 @@ class Link(Element):
     def to_markdown(self) -> str:
         return f"[{self.text}]({self.href})"
 
+
 @dataclass
 class Image(Element):
     alt: str
     src: str
-    
+
     def to_markdown(self) -> str:
         return f"![{self.alt}]({self.src})"
+
 
 class Li(Element):
     elements: List[Element] = []
 
-    def __init__(self,elements: List[Element] = []) -> None:
+    def __init__(self, elements: List[Element] = []) -> None:
         self.elements = elements
 
-    def add(self,element: Element) -> None:
+    def add(self, element: Element) -> None:
         self.elements.append(element)
 
     def to_markdown(self) -> None:
         pass
-        
+
 
 class ULi(Li):
     def to_markdown(self) -> str:
         from ..generator import md
         return "\n".join([f"-\t{md(el)}" for el in self.elements])
 
+
 class OLi(Li):
     def to_markdown(self) -> str:
         from ..generator import md
         return "\n".join([f"{i+1}.\t{md(self.elements[i])}" for i in range(len(self.elements))])
 
+
 @dataclass
 class P(Element):
     text: str = ""
-    
+
     def to_markdown(self) -> str:
         return self.text
-    
+
+
 @dataclass
 class Header(Element):
-    size:int
-    text:str
-    
+    size: int
+    text: str
+
     def to_markdown(self) -> str:
         return f"{'#'*self.size} {self.text}"
-    
+
+
 class Br(Element):
     def to_markdown(self) -> str:
         return "\n"
+
+
+class Hr(Element):
+    def to_markdown(self) -> str:
+        return "---"
+
+
+class Table(Element):
+    data: List[dict]
+    keys: List[str]
+    capitalized_headers: bool = True
+
+    def __init__(self, data: List[dict], keys: List[str], capitalized_headers: bool = True) -> None:
+        self.data = data
+        self.keys = keys
+        self.capitalized_headers = capitalized_headers
+
+    def to_markdown(self) -> str:
+        markdown_text = ""
+        markdown_text += "| "+" | ".join([key.capitalize() if self.capitalized_headers else key for key in self.keys]) + " |\n"
+        markdown_text += '| ----------- '*len(self.keys)+"|\n"
+        for d in self.data:
+            markdown_text += "| "+" | ".join([d.get(key, "") for key in self.keys]) + " |\n"
+        return markdown_text.strip("\n")
