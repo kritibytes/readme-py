@@ -36,4 +36,4 @@ readme = Readme(
     ]
 )
 
-generator(readme)
+generate(readme)

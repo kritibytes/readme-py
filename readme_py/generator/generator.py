@@ -1,7 +1,7 @@
 from ..structure import Readme
 
 
-def generator(readme_obj: Readme, type: str='md', file_name:str="README.md"):
+def generate(readme_obj: Readme, type: str='md', file_name:str="README.md"):
     inner_data:str = ""
     
     if type == 'md':

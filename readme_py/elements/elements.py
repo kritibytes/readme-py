@@ -1,9 +1,11 @@
 from dataclasses import dataclass
 from typing import List
+from abc import abstractmethod, ABCMeta
 
-class Element:
+class Element(metaclass=ABCMeta):    
+    @abstractmethod
     def to_markdown(self) -> str:
-        return ""
+        pass
 
 @dataclass
 class Link(Element):
