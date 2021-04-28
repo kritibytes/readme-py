@@ -106,4 +106,24 @@ class CodeBlock(Element):
     def to_markdown(self) -> str:
         from ..generator import md
         return f"""```{self.lang}\n{self.code.strip()}\n```"""
+
+
+
+class TaskList(Element):
+    @dataclass
+    class Task:
+        text: str
+        checked: bool = False
+
+    tasks: List[Task]
+
+    def __init__(self, tasks: List[Task]) -> None:
+        self.tasks = tasks
+
+    def to_markdown(self) -> str:
+        return "\n".join([f"- [{'x' if task.checked else ' '}] {task.text}" for task in self.tasks ])
+
+
+
+
         

@@ -31,6 +31,9 @@ class CodeBlock(Element):
     code: str
 ```
 
+- [x] Buy bread
+- [ ] Buy milk
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
