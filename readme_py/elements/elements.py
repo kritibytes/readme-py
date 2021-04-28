@@ -65,9 +65,10 @@ class P(Element):
 class Header(Element):
     size: int
     text: str
+    custom_id: str = ""
 
     def to_markdown(self) -> str:
-        return f"{'#'*self.size} {self.text}"
+        return f"{'#'*self.size} {self.text}{'' if self.custom_id=='' else f' {{#{self.custom_id}}}'}"
 
 
 class Br(Element):
@@ -98,6 +99,7 @@ class Table(Element):
             markdown_text += "| "+" | ".join([d.get(key, "") for key in self.keys]) + " |\n"
         return markdown_text.strip("\n")
 
+
 @dataclass
 class CodeBlock(Element):
     lang: str
@@ -106,7 +108,6 @@ class CodeBlock(Element):
     def to_markdown(self) -> str:
         from ..generator import md
         return f"""```{self.lang}\n{self.code.strip()}\n```"""
-
 
 
 class TaskList(Element):
@@ -121,9 +122,4 @@ class TaskList(Element):
         self.tasks = tasks
 
     def to_markdown(self) -> str:
-        return "\n".join([f"- [{'x' if task.checked else ' '}] {task.text}" for task in self.tasks ])
-
-
-
-
-        
+        return "\n".join([f"- [{'x' if task.checked else ' '}] {task.text}" for task in self.tasks])
