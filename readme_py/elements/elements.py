@@ -130,3 +130,10 @@ class BlockQuote(Element):
     def to_markdown(self) -> str:
         return f"> {self.text}"
     
+@dataclass
+class Strikethrough(Element):
+    text:str
+    
+    def to_markdown(self) -> str:
+        return f"~~{self.text}~~"
+    
