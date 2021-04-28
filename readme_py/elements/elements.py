@@ -142,11 +142,23 @@ class Strikethrough(Element):
 
 class DefinitionList(Element):
     text: str
-    items: List[str]
+    items: List[Element]
 
-    def __init__(self, text: str, items: List[str]) -> None:
+    def __init__(self, text: str, items: List[Element]) -> None:
         self.text = text
         self.items = items
 
     def to_markdown(self) -> str:
-        return "\n".join([self.text, *[f":\t{item}" for item in self.items]])
+        from ..generator import md
+        return "\n".join([self.text, *[f":\t{md(item)}" for item in self.items]])
+
+@dataclass
+class Footnote(Element):
+    text: str
+    definition: Element
+
+    def to_markdown(self) -> str:
+        from .utils import gen_random
+        from ..generator import md
+        random_smth = gen_random()
+        return f"{self.text} [^{random_smth}]\n [^{random_smth}]: {md(self.definition)}"
