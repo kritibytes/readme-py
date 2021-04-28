@@ -24,8 +24,6 @@ I have some open-source libraries:
 | School no. 309 | 2010-2021 |
 | Pragmatech | 2020 |
 
-### My Code ## {#hello}
-
 ```py
 @dataclass
 class CodeBlock(Element):
@@ -40,4 +38,7 @@ class CodeBlock(Element):
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
-hello
+term
+: definition
+: definition
+: definition
