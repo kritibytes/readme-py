@@ -65,10 +65,9 @@ class P(Element):
 class Header(Element):
     size: int
     text: str
-    custom_id: str = ""
 
     def to_markdown(self) -> str:
-        return f"{'#'*self.size} {self.text}{'' if self.custom_id=='' else f' {{#{self.custom_id}}}'}"
+        return f"{'#'*self.size} {self.text}"
 
 
 class Br(Element):
@@ -123,3 +122,11 @@ class TaskList(Element):
 
     def to_markdown(self) -> str:
         return "\n".join([f"- [{'x' if task.checked else ' '}] {task.text}" for task in self.tasks])
+
+@dataclass
+class BlockQuote(Element):
+    text:str
+    
+    def to_markdown(self) -> str:
+        return f"> {self.text}"
+    

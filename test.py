@@ -34,7 +34,7 @@ class AboutMe(Section):
                 "year":"2020"
             }
         ],['school','year'],False),
-        Header(3,'My Code','hello'),
+        Header(3,'My Code'),
         CodeBlock("py","""\n
 @dataclass
 class CodeBlock(Element):
