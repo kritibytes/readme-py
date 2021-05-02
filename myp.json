@@ -1,0 +1,32 @@
+{
+    "author": "kritibytes",
+    "author_email": "kritibytes@gmail.com",
+    "config": {},
+    "dependencies": {
+        "common": [],
+        "dev": [
+            "autopep8",
+            "pylint",
+            "twine",
+            "setuptools", 
+            "wheel"
+        ],
+        "prod": []
+    },
+    "description": "Python library to generate perfect READMEs",
+    "environment": "",
+    "name": "readme-py",
+    "scripts": {
+        "deploy": {
+            "command": "python -m twine upload --skip-existing --repository-url https://upload.pypi.org/legacy/ dist/*",
+            "description": "Upload to PYPI"
+        },
+        "predeploy": {
+            "command": "python setup.py sdist bdist_wheel",
+            "description": "Build package"
+        }
+    },
+    "url": "https://github.com/kritibytes/readme-py",
+    "use_environment": true,
+    "version": "0.0.1"
+}
