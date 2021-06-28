@@ -2,19 +2,7 @@
     "author": "kritibytes",
     "author_email": "kritibytes@gmail.com",
     "config": {},
-    "dependencies": {
-        "common": [],
-        "dev": [
-            "autopep8",
-            "pylint",
-            "twine",
-            "setuptools", 
-            "wheel"
-        ],
-        "prod": []
-    },
     "description": "Python library to generate perfect READMEs",
-    "environment": "",
     "name": "readme-py",
     "scripts": {
         "deploy": {
