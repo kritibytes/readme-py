@@ -7,7 +7,10 @@ from .elements import (
     P,
     Header,
     Br,
-    Table
+    Table,
+    CodeBlock, 
+    Footnote, 
+    TaskList
 )
 from .styles import (
     bold,
